@@ -1,0 +1,15 @@
+url: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+api_key_name: GEMINI_API_KEY
+headers:
+  Authorization: "Bearer {{api_key}}"
+  Content-Type: application/json
+payload:
+  model: gemini-2.5-flash
+  messages:
+    - role: user
+      content: "{{prompt}}"
+response_content:
+  - choices
+  - 0
+  - message
+  - parsed

@@ -1,0 +1,12 @@
+url: https://api.openai.com/v1/chat/completions
+api_key_name: OPENAI_API_KEY
+headers:
+  Authorization: "Bearer {{api_key}}"
+  Content-Type: application/json
+payload:
+  model: gpt-3.5-turbo
+  messages:
+    - role: system
+      content: You are a helpful assistant.
+    - role: user
+      content: "{{prompt}}"
