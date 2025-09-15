@@ -1,0 +1,8 @@
+url: http://localhost:12434/engines/llama.cpp/v1/chat/completions
+payload:
+  model: ai/gpt-oss
+  messages:
+    - role: system
+      content: You are a helpful assistant.
+    - role: user
+      content: "{{prompt}}"
