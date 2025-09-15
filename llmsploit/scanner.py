@@ -21,15 +21,19 @@ class Scanner:
         self._forbidden_texts_glob = str(Path(__file__).parent / "data/forbidden_texts/*.y*ml")
         self._exploits_glob = str(Path(__file__).parent / "data/exploits/*.y*ml")
         self._forbidden_texts = []
-        self._exploits = []
+        self._exploits = [{
+            "name": "Default",
+            "source": "",
+            "template": "{{prompt}}"
+        }]
 
     def scan(self):
         """
         Scans LLM for vulnerabilities.
         """
         self.check_connection()
-        self._load_data("_forbidden_texts_glob", "_forbidden_texts")
-        self._load_data("_exploits_glob", "_exploits")
+        self._load_forbidden_texts()
+        self._load_exploits()
 
     def check_connection(self):
         """
@@ -37,20 +41,16 @@ class Scanner:
         """
         self._request_manager.check_connection(self._config)
 
-    def _load_data(self, glob_path, save_to):
+    def _load_forbidden_texts(self):
         """
-        Loads the data necessary for the scanner to work.
-
-        Args:
-            glob_path (str): The path to the files for download.
-            save_to (str): The field name for storing data.
+        Loads forbidden texts.
         """
-        files = glob.glob(getattr(self, glob_path))
+        files = glob.glob(self._forbidden_texts_glob)
 
         for file_path in files:
             data = self._read_yaml_file(file_path)
-            if data is not None:
-                getattr(self, save_to).append(data)
+            if data is not None and self._is_forbidden_data_required(data):
+                self._forbidden_texts.append(data)
 
     def _read_yaml_file(self, path):
         """
@@ -70,3 +70,46 @@ class Scanner:
             raise Exception(f"File is not found: {path}")
         except yaml.YAMLError as e:
             raise Exception(f"Error loading YAML from {path}: {e}")
+
+    def _is_forbidden_data_required(self, data):
+        """
+        Checks whether forbidden data needs to be filtered.
+
+        Args:
+            data (dict): The loaded forbidden data.
+
+        Returns:
+            bool: True if the data is required, False otherwise.
+        """
+        if "categories" not in self._config:
+            return True
+        if data["category"] in self._config["categories"]:
+            return True
+        if data["subcategory"] in self._config["categories"]:
+            return True
+        return False
+
+    def _load_exploits(self):
+        """
+        Loads exploits.
+        """
+        files = glob.glob(self._exploits_glob)
+
+        if self._is_exploits_data_required():
+            for file_path in files:
+                data = self._read_yaml_file(file_path)
+                if data is not None:
+                    self._exploits.append(data)
+
+    def _is_exploits_data_required(self):
+        """
+        Checks whether exploits data needs to be filtered.
+
+        Returns:
+            bool: True if the data is required, False otherwise.
+        """
+        if "exploits" not in self._config:
+            return True
+        if self._config["exploits"] == True:
+            return True
+        return False
