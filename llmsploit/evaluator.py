@@ -19,7 +19,7 @@ class Evaluator:
         """
         Evaluates LLM vulnerabilities.
         """
-        self.check_connection()
+        print("Evaluate")
 
     def check_connection(self):
         """

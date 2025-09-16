@@ -31,7 +31,6 @@ class Scanner:
         """
         Scans LLM for vulnerabilities.
         """
-        self.check_connection()
         self._load_forbidden_texts()
         self._load_exploits()
 
