@@ -91,8 +91,6 @@ class Scanner:
             return True
         if data["category"] in self._config["categories"]:
             return True
-        if data["subcategory"] in self._config["categories"]:
-            return True
         return False
 
     def _load_exploits(self):
@@ -138,7 +136,6 @@ class Scanner:
                     self._result.append({
                         "exploit": exploit["name"],
                         "category": forbidden_item["category"],
-                        "subcategory": forbidden_item["subcategory"],
                         "severity": forbidden_item["severity"],
                         "prompt": prompt,
                         "response": response
