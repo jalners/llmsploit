@@ -31,6 +31,7 @@ class App:
         """
         Starts the LLM vulnerability scanning process.
         """
+        self.check_connection()
         self._scanner.scan()
         self._evaluator.evaluate()
 
