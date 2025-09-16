@@ -26,13 +26,20 @@ class Scanner:
             "source": "",
             "template": "{{prompt}}"
         }]
+        self._result = []
 
     def scan(self):
         """
         Scans LLM for vulnerabilities.
+
+        Returns:
+            dict: A scan results data.
         """
         self._load_forbidden_texts()
         self._load_exploits()
+        self._run()
+
+        return self._result
 
     def check_connection(self):
         """
@@ -112,3 +119,29 @@ class Scanner:
         if self._config["exploits"] == True:
             return True
         return False
+
+    def _run(self):
+        """
+        Runs scanning process.
+        """
+        if not self._forbidden_texts:
+            print("There is no category of forbidden texts chosen.")
+            return None
+
+        print("Processing started.")
+
+        for exploit in self._exploits:
+            for forbidden_item in self._forbidden_texts:
+                for prompt in forbidden_item["prompts"]:
+                    print(f"- Prompt '{prompt}', exploit '{exploit["name"]}'.")
+                    response = self._request_manager.post(self._config, exploit["template"].replace("{{prompt}}", prompt))
+                    self._result.append({
+                        "exploit": exploit["name"],
+                        "category": forbidden_item["category"],
+                        "subcategory": forbidden_item["subcategory"],
+                        "severity": forbidden_item["severity"],
+                        "prompt": prompt,
+                        "response": response
+                    })
+
+        print("Processing completed.")

@@ -15,9 +15,12 @@ class Evaluator:
         self._request_manager = request_manager
         self._config = config
 
-    def evaluate(self):
+    def evaluate(self, data):
         """
         Evaluates LLM vulnerabilities.
+
+        Args:
+            data (dict): The scan results data.
         """
         print("Evaluate")
 
