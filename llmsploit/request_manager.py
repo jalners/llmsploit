@@ -15,7 +15,19 @@ class RequestManager:
             config (dict): The LLM configuration.
             prompt (str): The prompt to send to the LLM.
         """
-        print("Post")
+        url = config["url"]
+        headers = config["headers"]
+        payload = self._prepare_payload(config["payload"], prompt)
+        scheme = config["response_content"]
+        model = config["payload"]["model"]
+
+        try:
+            response = requests.post(url, headers=headers, json=payload)
+            response.raise_for_status()
+
+            return self._get_response_content(response.json(), scheme)
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"An error occurred during the request to the '{model}' LLM: {e}")
 
     def check_connection(self, config):
         """
