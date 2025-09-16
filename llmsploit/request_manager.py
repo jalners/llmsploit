@@ -1,5 +1,5 @@
-import json
 import requests
+import copy
 
 class RequestManager:
     """
@@ -57,7 +57,13 @@ class RequestManager:
         Returns:
             dict: A payload with a prompt inserted.
         """
-        return json.loads(json.dumps(payload).replace("{{prompt}}", prompt))
+        payload_copy = copy.deepcopy(payload)
+
+        for message in payload_copy["messages"]:
+            for key, value in message.items():
+                message[key] = value.replace("{{prompt}}", prompt)
+
+        return payload_copy
 
     def _get_response_content(self, data, scheme):
         """
