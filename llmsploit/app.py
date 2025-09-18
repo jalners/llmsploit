@@ -9,23 +9,20 @@ class App:
 
     This class combines the functionality of all other code.
     """
-    def __init__(self, targetPath, evaluationPath):
+    def __init__(self, path_or_config):
         """
         Initializes a new instance of LLMsploit App.
 
         Args:
-            targetPath (str): The path to the target LLM configuration file.
-            evaluationPath (str): The path to the evaluation LLM configuration file.
+            path_or_config (str | dict): The path to the application configuration file or configuration dictionary.
         """
         self.config_manager = ConfigManager()
-
-        self._target_config = self.config_manager.create_config(targetPath)
-        self._evaluation_config = self.config_manager.create_config(evaluationPath)
+        self._config = self.config_manager.create(path_or_config)
 
         self._request_manager = RequestManager()
 
-        self._scanner = Scanner(self._request_manager, self._target_config)
-        self._evaluator = Evaluator(self._request_manager, self._evaluation_config)
+        self._scanner = Scanner(self._request_manager, self._config["target"])
+        self._evaluator = Evaluator(self._request_manager, self._config["evaluation"])
 
     def process(self):
         """

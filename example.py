@@ -1,17 +1,21 @@
-from pathlib import Path
 from llmsploit.app import App
 
-# Select the configuration for connecting to the target LLM after pre-configuring it.
-targetConfigPath = Path(__file__).parent / "examples/target_config.yaml"
+# Configuration dictionary.
+config = {
+    "target_url": "http://localhost:12434/engines/llama.cpp/v1/chat/completions",
+    "target_model_name": "ai/gemma3",
+    "evaluation_url": "http://localhost:12434/engines/llama.cpp/v1/chat/completions",
+    "evaluation_model_name": "ai/gpt-oss"
+}
 
-# Select the configuration for connecting to the evaluation LLM after pre-configuring it.
-evaluationConfigPath = Path(__file__).parent / "examples/evaluation_config.yaml"
+# Create an application for future use (with the configuration dictionary).
+app = App(config)
 
-# Create an application for future use.
-app = App(targetConfigPath, evaluationConfigPath)
+# Create an application for future use (with path to the configuration file).
+# app = App("example_config.yaml")
 
 # Verifying connection to the LLM.
-# app.check_connection()
+app.check_connection()
 
 # For the complete vulnerability scanning process, call the following method:
-app.process()
+# app.process()

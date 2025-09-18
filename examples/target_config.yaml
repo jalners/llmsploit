@@ -1,8 +1,0 @@
-url: http://localhost:12434/engines/llama.cpp/v1/chat/completions
-payload:
-  model: ai/gemma3
-  messages:
-    - role: system
-      content: You are a helpful assistant.
-    - role: user
-      content: "{{prompt}}"

@@ -1,0 +1,7 @@
+# Configuration for target LLM.
+target_url: http://localhost:12434/engines/llama.cpp/v1/chat/completions
+target_model_name: ai/gemma3
+
+# Configuration for evaluation LLM.
+evaluation_url: http://localhost:12434/engines/llama.cpp/v1/chat/completions
+evaluation_model_name: ai/gpt-oss
