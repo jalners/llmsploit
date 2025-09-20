@@ -28,6 +28,12 @@ class Scanner:
         }]
         self._result = []
 
+    def check_connection(self):
+        """
+        Checks connection to the LLM.
+        """
+        self._request_manager.check_connection(self._config)
+
     def scan(self):
         """
         Scans LLM for vulnerabilities.
@@ -40,12 +46,6 @@ class Scanner:
         self._run()
 
         return self._result
-
-    def check_connection(self):
-        """
-        Checks connection to the LLM.
-        """
-        self._request_manager.check_connection(self._config)
 
     def _load_forbidden_texts(self):
         """

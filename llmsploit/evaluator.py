@@ -15,6 +15,12 @@ class Evaluator:
         self._request_manager = request_manager
         self._config = config
 
+    def check_connection(self):
+        """
+        Checks connection to the LLM.
+        """
+        self._request_manager.check_connection(self._config)
+
     def evaluate(self, data):
         """
         Evaluates LLM vulnerabilities.
@@ -23,9 +29,3 @@ class Evaluator:
             data (dict): The scan results data.
         """
         print("Evaluate")
-
-    def check_connection(self):
-        """
-        Checks connection to the LLM.
-        """
-        self._request_manager.check_connection(self._config)
