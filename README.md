@@ -87,7 +87,7 @@ uv run -m llmsploit --target_url TARGET_LLM_URL --target_model_name TARGET_LLM_N
 If you have `Docker` and the `gemma3` and `gpt-oss` models installed, you can Run the following command in your console:
 
 ```bash
-uv run -m llmsploit --target_url http://localhost:12434/engines/llama.cpp/v1/chat/completions --target_model_name ai/gemma3 --evaluation_url http://localhost:12434/engines/llama.cpp/v1/chat/completions --evaluation_model_name ai/gpt-oss
+uv run -m llmsploit --target_url http://localhost:12434/engines/v1/chat/completions --target_model_name ai/gemma3 --evaluation_url http://localhost:12434/engines/v1/chat/completions --evaluation_model_name ai/gpt-oss
 ```
 
 ### Application options description
