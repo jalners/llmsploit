@@ -32,7 +32,11 @@ class Scanner:
         """
         Checks connection to the LLM.
         """
+        print("=== Checking connection to the scanner LLM started ===")
+
         self._request_manager.check_connection(self._config)
+
+        print(">> Connection to the scanner LLM checked\n")
 
     def scan(self):
         """

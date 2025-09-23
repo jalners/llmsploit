@@ -51,7 +51,7 @@ class RequestManager:
 
             if ('paris' not in content.lower()):
                 raise Exception(f"Connection to the '{model}' LLM failed.")
-            print(f"Successful connection to the '{model}' LLM.")
+            print(f"Successful connection to the [{model}] LLM")
         except requests.exceptions.RequestException as e:
             raise Exception(f"An error occurred during the request to the '{model}' LLM: {e}")
 
