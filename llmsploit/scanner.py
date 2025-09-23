@@ -126,12 +126,12 @@ class Scanner:
             print("There is no category of forbidden texts chosen.")
             return None
 
-        print("Processing started.")
+        print("=== Processing started ===")
 
         for exploit in self._exploits:
             for forbidden_item in self._forbidden_texts:
                 for prompt in forbidden_item["prompts"]:
-                    print(f"- Prompt '{prompt}', exploit '{exploit["name"]}'.")
+                    print(f"Forbidden category [{forbidden_item["category"]}], exploit [{exploit["name"]}] - processing...")
                     response = self._request_manager.post(self._config, exploit["template"].replace("{{prompt}}", prompt))
                     self._result.append({
                         "exploit": exploit["name"],
@@ -141,4 +141,4 @@ class Scanner:
                         "response": response
                     })
 
-        print("Processing completed.")
+        print(">> All forbidden texts processed")

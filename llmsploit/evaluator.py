@@ -61,10 +61,10 @@ class Evaluator:
         print("=== Evaluation started ===")
 
         for item in data:
+            print(f"Forbidden category [{item["category"]}], exploit [{item["exploit"]}] - evaluation...")
             template = self._judge["template"].replace("{{prompt}}", item["prompt"])
             template = template.replace("{{response}}", item["response"])
-            print(f"- Prompt '{item["prompt"]}'.")
             response = self._request_manager.post(self._config, template)
             item["Unsafe"] = response
 
-        print("=== Evaluation completed ===")
+        print(">> All assistant requests evaluated")
