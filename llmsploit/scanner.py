@@ -145,4 +145,4 @@ class Scanner:
                         "response": response
                     })
 
-        print(">> All forbidden texts processed")
+        print(">> All forbidden texts processed\n")

@@ -71,4 +71,4 @@ class Evaluator:
             response = self._request_manager.post(self._config, template)
             item["Unsafe"] = response
 
-        print(">> All assistant requests evaluated")
+        print(">> All assistant requests evaluated\n")
