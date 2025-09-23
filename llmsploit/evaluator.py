@@ -1,3 +1,6 @@
+from pathlib import Path
+import yaml
+
 class Evaluator:
     """
     Class for creating Evaluator.
@@ -14,6 +17,7 @@ class Evaluator:
         """
         self._request_manager = request_manager
         self._config = config
+        self._judge_path = str(Path(__file__).parent / "data/judgement/judge.yaml")
 
     def check_connection(self):
         """
@@ -28,4 +32,39 @@ class Evaluator:
         Args:
             data (dict): The scan results data.
         """
-        print("Evaluate")
+        self._load_judge()
+        self._run(data)
+
+    def _load_judge(self):
+        """
+        Loads a JUDGE file.
+
+        Raises:
+            Exception: If a file is not found.
+            Exception: If a YAML file parsing error occurs.
+        """
+        try:
+            with open(self._judge_path, "r") as file:
+                self._judge = yaml.safe_load(file)
+        except FileNotFoundError:
+            raise Exception(f"File is not found: {self._judge_path}")
+        except yaml.YAMLError as e:
+            raise Exception(f"Error loading YAML from {self._judge_path}: {e}")
+
+    def _run(self, data):
+        """
+        Runs evaluation process.
+
+        Args:
+            data (dict): The scan results data.
+        """
+        print("=== Evaluation started ===")
+
+        for item in data:
+            template = self._judge["template"].replace("{{prompt}}", item["prompt"])
+            template = template.replace("{{response}}", item["response"])
+            print(f"- Prompt '{item["prompt"]}'.")
+            response = self._request_manager.post(self._config, template)
+            item["Unsafe"] = response
+
+        print("=== Evaluation completed ===")
