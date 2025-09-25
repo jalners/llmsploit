@@ -2,6 +2,7 @@ from llmsploit.config_manager import ConfigManager
 from llmsploit.request_manager import RequestManager
 from llmsploit.scanner import Scanner
 from llmsploit.evaluator import Evaluator
+from llmsploit.imeca_analyzer import IMECAAnalyzer
 
 class App:
     """
@@ -23,6 +24,7 @@ class App:
 
         self._scanner = Scanner(self._request_manager, self._config["target"])
         self._evaluator = Evaluator(self._request_manager, self._config["evaluation"])
+        self._analyzer = IMECAAnalyzer()
 
     def process(self):
         """
@@ -32,6 +34,7 @@ class App:
 
         scan_result = self._scanner.scan()
         self._evaluator.evaluate(scan_result)
+        analisis_result = self._analyzer.analyze(scan_result)
 
     def check_connection(self):
         """
