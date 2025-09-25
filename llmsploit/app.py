@@ -29,12 +29,17 @@ class App:
     def process(self):
         """
         Starts the LLM vulnerability scanning process.
+
+        Returns:
+            dict: An analisis results data.
         """
         self.check_connection()
 
         scan_result = self._scanner.scan()
         self._evaluator.evaluate(scan_result)
         analisis_result = self._analyzer.analyze(scan_result)
+
+        return analisis_result
 
     def check_connection(self):
         """
