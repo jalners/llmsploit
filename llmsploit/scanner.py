@@ -43,7 +43,7 @@ class Scanner:
         Scans LLM for vulnerabilities.
 
         Returns:
-            dict: A scan results data.
+            list: A scan results data.
         """
         self._load_forbidden_texts()
         self._load_exploits()

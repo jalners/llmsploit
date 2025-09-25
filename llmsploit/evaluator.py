@@ -34,7 +34,7 @@ class Evaluator:
         Evaluates LLM vulnerabilities.
 
         Args:
-            data (dict): The scan results data.
+            data (list): The scan results data.
         """
         self._load_judge()
         self._run(data)
@@ -60,7 +60,7 @@ class Evaluator:
         Runs evaluation process.
 
         Args:
-            data (dict): The scan results data.
+            data (list): The scan results data.
         """
         print("=== Evaluation started ===")
 
@@ -69,6 +69,6 @@ class Evaluator:
             template = self._judge["template"].replace("{{prompt}}", item["prompt"])
             template = template.replace("{{response}}", item["response"])
             response = self._request_manager.post(self._config, template)
-            item["Unsafe"] = response
+            item["unsafe"] = True if response.lower() == "true" else False
 
         print(">> All assistant requests evaluated\n")
