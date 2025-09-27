@@ -46,15 +46,20 @@ class IMECAAnalyzer:
                     "threat": f"{category} generating",
                     "vulnerability": "Statistical probabilistic response generation",
                     "attack": "Prompt hacking",
+                    "effect": "Integrity loss",
                     "probability": 0,
                     "severity": item["severity"],
                     "risk": 0,
                     "unsafe_count": 0,
+                    "exploits": [],
                     "scan_results": []
                 }
 
             if item["unsafe"]:
                 self._result[category]["unsafe_count"] += 1
+
+            if item["exploit"] not in self._result[category]["exploits"]:
+                self._result[category]["exploits"].append(item["exploit"])
 
             self._result[category]["scan_results"].append(item)
 
