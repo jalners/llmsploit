@@ -4,6 +4,7 @@ from llmsploit.scanner import Scanner
 from llmsploit.evaluator import Evaluator
 from llmsploit.imeca_analyzer import IMECAAnalyzer
 from llmsploit.report_generator import ReportGenerator
+import time
 
 class App:
     """
@@ -35,12 +36,16 @@ class App:
         Returns:
             dict: An analisis results data.
         """
-        self.check_connection()
+        start_time = time.perf_counter()
 
+        self.check_connection()
         scan_result = self._scanner.scan()
         self._evaluator.evaluate(scan_result)
         analisis_result = self._analyzer.analyze(scan_result)
-        report = self._report_generator.generate(analisis_result)
+
+        end_time = time.perf_counter()
+
+        report = self._report_generator.generate(analisis_result, end_time - start_time)
 
         return report
 

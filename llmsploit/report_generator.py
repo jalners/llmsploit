@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from jinja2 import Environment, FileSystemLoader
 
 class ReportGenerator:
@@ -20,34 +20,36 @@ class ReportGenerator:
         self._templates_path = str(Path(__file__).parent / "templates")
         self._template_name = "report.html"
 
-    def generate(self, data):
+    def generate(self, data, duration):
         """
         Generates the report.
 
         Args:
             data (list): The scan results data.
+            duration (float): The scan duration.
 
         Returns:
             dict: A generated report.
         """
-        report = self._create_report(data)
+        report = self._create_report(data, duration)
         self._write_report(report)
 
         return report
 
-    def _create_report(self, data):
+    def _create_report(self, data, duration):
         """
         Creates the report.
 
         Args:
             data (list): The scan results data.
+            duration (float): The scan duration.
 
         Returns:
             dict: A generated report.
         """
         report = {
             "scan_date": datetime.now().strftime("%d %b %Y %H:%M:%S"),
-            "scan_duration": 0,
+            "scan_duration": timedelta(seconds=round(duration)),
             "target_model_name": self._config["target"]["model_name"],
             "evaluation_model_name": self._config["evaluation"]["model_name"],
             "total_requests": 0,
