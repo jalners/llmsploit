@@ -3,6 +3,7 @@ from llmsploit.request_manager import RequestManager
 from llmsploit.scanner import Scanner
 from llmsploit.evaluator import Evaluator
 from llmsploit.imeca_analyzer import IMECAAnalyzer
+from llmsploit.report_generator import ReportGenerator
 
 class App:
     """
@@ -25,6 +26,7 @@ class App:
         self._scanner = Scanner(self._request_manager, self._config["target"])
         self._evaluator = Evaluator(self._request_manager, self._config["evaluation"])
         self._analyzer = IMECAAnalyzer()
+        self._report_generator = ReportGenerator(self._config)
 
     def process(self):
         """
@@ -38,8 +40,9 @@ class App:
         scan_result = self._scanner.scan()
         self._evaluator.evaluate(scan_result)
         analisis_result = self._analyzer.analyze(scan_result)
+        report = self._report_generator.generate(analisis_result)
 
-        return analisis_result
+        return report
 
     def check_connection(self):
         """
