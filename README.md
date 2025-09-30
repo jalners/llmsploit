@@ -1,6 +1,9 @@
 LLMsploit a vulnerability scanner for Large Language Models
 ===================================
 
+> [!WARNING]
+> Please note that this repository contains examples of harmful, unethical, illegal, offensive, or biased language. We apologize for any discomfort that may arise while reading such content.
+
 ## Table of contents
 
 * [Installation](#installation)
