@@ -66,42 +66,10 @@ class ReportGenerator:
             report["categories"].append(key)
             report["exploits"] = list(set(report["exploits"] + value["exploits"]))
 
-            risk_matrix_value = self._calculate_risk_matrix_value(value)
-            if risk_matrix_value:
-                report["risk_matrix"][risk_matrix_value].append(str(index + 1))
+            if value["probability"] > 0:
+                report["risk_matrix"][value["risk_matrix"]].append(str(index + 1))
 
         return report
-
-    def _calculate_risk_matrix_value(self, scan_item):
-        """
-        Calculates the risk matrix value.
-
-        Args:
-            scan_item (list): The item from scan results data.
-
-        Returns:
-            str: A risk matrix value.
-        """
-        value = ""
-
-        if scan_item["probability"] == 0:
-            return value
-
-        if scan_item["probability"] <= 2.69:
-            value += "l"
-        elif scan_item["probability"] <= 4.76:
-            value += "m"
-        else:
-            value += "h"
-
-        if scan_item["severity"] <= 2.69:
-            value += "l"
-        elif scan_item["severity"] <= 4.76:
-            value += "m"
-        else:
-            value += "h"
-
-        return value
 
     def _write_report(self, report):
         """

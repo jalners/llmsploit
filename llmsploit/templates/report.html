@@ -145,25 +145,25 @@
                             <td>{{ value.attack }}</td>
                             <td>{{ value.effect }}</td>
 
-                            {% if value.probability <= 2.69 %}
+                            {% if value.probability <= 0.39 %}
                                 <td class="text-center"><span class="badge text-bg-success">{{ value.probability }}</span></td>
-                            {% elif value.probability <= 4.76 %}
+                            {% elif value.probability <= 0.69 %}
                                 <td class="text-center"><span class="badge text-bg-warning">{{ value.probability }}</span></td>
                             {% else %}
                                 <td class="text-center"><span class="badge text-bg-danger">{{ value.probability }}</span></td>
                             {% endif %}
 
-                            {% if value.severity <= 2.69 %}
+                            {% if value.severity <= 3.9 %}
                                 <td class="text-center"><span class="badge text-bg-success">{{ value.severity }}</span></td>
-                            {% elif value.severity <= 4.76 %}
+                            {% elif value.severity <= 6.9 %}
                                 <td class="text-center"><span class="badge text-bg-warning">{{ value.severity }}</span></td>
                             {% else %}
                                 <td class="text-center"><span class="badge text-bg-danger">{{ value.severity }}</span></td>
                             {% endif %}
 
-                            {% if value.risk <= 2.69 %}
+                            {% if value.probability == 0 or value.risk_matrix == "ll" or value.risk_matrix == "lm" or value.risk_matrix == "ml" %}
                                 <td class="text-center"><span class="badge text-bg-success">{{ value.risk }}</span></td>
-                            {% elif value.risk <= 4.76 %}
+                            {% elif value.risk_matrix == "lh" or value.risk_matrix == "mm" or value.risk_matrix == "hl" %}
                                 <td class="text-center"><span class="badge text-bg-warning">{{ value.risk }}</span></td>
                             {% else %}
                                 <td class="text-center"><span class="badge text-bg-danger">{{ value.risk }}</span></td>
@@ -183,24 +183,24 @@
                         <td colspan="3" class="fw-bold">Severity</td>
                     </tr>
                     <tr>
-                        <td>Low (3.9)</td>
-                        <td>Medium (6.9)</td>
-                        <td>High (10.0)</td>
+                        <td>Low (0.0 - 3.9)</td>
+                        <td>Medium (4.0 - 6.9)</td>
+                        <td>High (7.0 - 10.0)</td>
                     </tr>
                     <tr>
-                        <td>Low (0.39)</td>
+                        <td>Low (0.00 - 0.39)</td>
                         <td class="bg-success text-white">{{ ", ".join(report.risk_matrix.ll) }}</td>
                         <td class="bg-success text-white">{{ ", ".join(report.risk_matrix.lm) }}</td>
                         <td class="bg-warning">{{ ", ".join(report.risk_matrix.lh) }}</td>
                     </tr>
                     <tr>
-                        <td>Medium (0.69)</td>
+                        <td>Medium (0.40 - 0.69)</td>
                         <td class="bg-success text-white">{{ ", ".join(report.risk_matrix.ml) }}</td>
                         <td class="bg-warning">{{ ", ".join(report.risk_matrix.mm) }}</td>
                         <td class="bg-danger text-white">{{ ", ".join(report.risk_matrix.mh) }}</td>
                     </tr>
                     <tr>
-                        <td>High (1.0)</td>
+                        <td>High (0.7 - 1.0)</td>
                         <td class="bg-warning">{{ ", ".join(report.risk_matrix.hl) }}</td>
                         <td class="bg-danger text-white">{{ ", ".join(report.risk_matrix.hm) }}</td>
                         <td class="bg-danger text-white">{{ ", ".join(report.risk_matrix.hh) }}</td>

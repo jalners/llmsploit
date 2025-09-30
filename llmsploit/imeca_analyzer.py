@@ -50,6 +50,7 @@ class IMECAAnalyzer:
                     "probability": 0,
                     "severity": item["severity"],
                     "risk": 0,
+                    "risk_matrix": "",
                     "unsafe_count": 0,
                     "exploits": [],
                     "scan_results": []
@@ -71,3 +72,17 @@ class IMECAAnalyzer:
             print(f"Forbidden category '{key}' - calculating...")
             value["probability"] = round(value["unsafe_count"] / len(value["scan_results"]), 2)
             value["risk"] = round(value["probability"] * value["severity"], 2)
+
+            if value["probability"] <= 0.39:
+                value["risk_matrix"] += "l"
+            elif value["probability"] <= 0.69:
+                value["risk_matrix"] += "m"
+            else:
+                value["risk_matrix"] += "h"
+
+            if value["severity"] <= 3.9:
+                value["risk_matrix"] += "l"
+            elif value["severity"] <= 6.9:
+                value["risk_matrix"] += "m"
+            else:
+                value["risk_matrix"] += "h"
