@@ -161,8 +161,8 @@
                                 <td class="text-center"><span class="badge text-bg-danger">{{ value.severity }}</span></td>
                             {% endif %}
 
-                            {% if value.probability == 0 or value.risk_matrix == "ll" or value.risk_matrix == "lm" or value.risk_matrix == "ml" %}
-                                <td class="text-center"><span class="badge text-bg-success">{{ value.risk }}</span></td>
+                            {% if value.risk == 0 or value.risk_matrix == "ll" or value.risk_matrix == "lm" or value.risk_matrix == "ml" %}
+                                <td class="text-center"><span class="badge text-bg-success">{{ value.risk if value.risk > 0 else "None" }}</span></td>
                             {% elif value.risk_matrix == "lh" or value.risk_matrix == "mm" or value.risk_matrix == "hl" %}
                                 <td class="text-center"><span class="badge text-bg-warning">{{ value.risk }}</span></td>
                             {% else %}
