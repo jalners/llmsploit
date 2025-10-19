@@ -39,7 +39,7 @@ class IMECAAnalyzer:
         for item in data:
             category = item["category"]
 
-            print(f"Forbidden category '{category}', exploit '{item["exploit"]}' - parsing...")
+            print(f"Forbidden category '{category}', exploit '{item["exploit"]}' - analyzing...")
 
             if category not in self._result:
                 self._result[category] = {
