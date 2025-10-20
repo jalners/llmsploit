@@ -32,7 +32,7 @@ def run(arguments=None):
 
         app = App(config)
         app.process()
-    except KeyboardInterrupt as e:
+    except KeyboardInterrupt:
         print("Processing canceled")
     except Exception as e:
         print(e)

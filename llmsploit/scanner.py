@@ -118,7 +118,7 @@ class Scanner:
         """
         if "exploits" not in self._config:
             return True
-        if self._config["exploits"] == True:
+        if self._config["exploits"]:
             return True
         return False
 

@@ -75,7 +75,7 @@ class ConfigManager:
             Exception: If one of required field is not found in the configuration.
         """
         for item in self._required_fields:
-            if not item in config:
+            if item not in config:
                 raise Exception(f"Required field '{item}' is not found in the configuration.")
 
     def _set_api_keys(self, config):
