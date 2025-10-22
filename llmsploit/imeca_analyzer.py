@@ -1,8 +1,10 @@
 class IMECAAnalyzer:
     """
-    Class for creating IMECAAnalyzer.
+    Analyzes LLM scanning results using the IMECA methodology.
 
-    This class analyzes the results of the LLM scanning in accordance with the IMECA methodology.
+    The analyzer receives the scan output and applies the IMECA
+    methodology to produce an analyzed data. The report includes
+    quantitative metrics, qualitative insights, and recommendations.
     """
     def __init__(self):
         """

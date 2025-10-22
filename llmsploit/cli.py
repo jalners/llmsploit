@@ -3,7 +3,7 @@ from llmsploit.app import App
 
 def run(arguments=None):
     """
-    Runs the LLMsploit
+    Runs the LLMsploit through the command line interface.
 
     Args:
         arguments (list): The list of arguments passed by the user.

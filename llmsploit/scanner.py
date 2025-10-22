@@ -4,9 +4,11 @@ import yaml
 
 class Scanner:
     """
-    Class for creating Scanner.
+    Scans LLM for common security vulnerabilities.
 
-    This class scans LLM for vulnerabilities.
+    The scanner sends prompts to the target LLM and collects
+    the generated texts. Results are returned as a report that can be
+    persisted, displayed, or further processed.
     """
     def __init__(self, request_manager, config):
         """
@@ -30,7 +32,7 @@ class Scanner:
 
     def check_connection(self):
         """
-        Checks connection to the LLM.
+        Checks the connection to the LLM.
         """
         print("=== Checking connection to the scanner LLM started ===")
 

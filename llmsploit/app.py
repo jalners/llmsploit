@@ -8,9 +8,9 @@ import time
 
 class App:
     """
-    Class for creating LLMsploit application.
+    The main entry point for the LLMsploit application.
 
-    This class combines the functionality of all other code.
+    This class orchestrates the entire application lifecycle.
     """
     def __init__(self, path_or_config):
         """

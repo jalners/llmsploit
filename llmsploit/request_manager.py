@@ -2,13 +2,14 @@ import requests
 
 class RequestManager:
     """
-    Class for creating RequestManager.
+    Manages actions related to HTTP requests.
 
-    This class manages all related to HTTP requests.
+    A lightweight wrapper around the `requests` library that centralises
+    HTTP communication for the application.
     """
     def post(self, config, prompt):
         """
-        Makes post request.
+        Sends a post request.
 
         Args:
             config (dict): The LLM configuration.
@@ -29,7 +30,7 @@ class RequestManager:
 
     def check_connection(self, config):
         """
-        Checks connection to the LLM.
+        Checks the connection to the LLM.
 
         Args:
             config (dict): The LLM configuration.

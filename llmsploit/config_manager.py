@@ -3,9 +3,10 @@ import os
 
 class ConfigManager:
     """
-    Class for managing application configuration.
+    Manages application configuration.
 
-    This class loads the configuration if it exists and it is necessary, validates for the required fields, and returns it.
+    The manager loads the configuration if it exists and it is necessary,
+    validates for the required fields, and returns it.
     """
     def __init__(self):
         """

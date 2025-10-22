@@ -5,9 +5,9 @@ from jinja2 import Environment, FileSystemLoader
 
 class ReportGenerator:
     """
-    Class for creating ReportGenerator.
+    Turns raw data into a structured report.
 
-    This class generates and returns the report.
+    The generator produces a report in HTML format.
     """
     def __init__(self, config):
         """

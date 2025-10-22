@@ -3,9 +3,10 @@ import yaml
 
 class Evaluator:
     """
-    Class for creating Evaluator.
+    Evaluates LLM vulnerabilitis.
 
-    This class evaluate LLM vulnerabilities.
+    The evaluator runs the model outputs through a vulnerability test
+    and saves the result of the evaluation.
     """
     def __init__(self, request_manager, config):
         """
@@ -21,7 +22,7 @@ class Evaluator:
 
     def check_connection(self):
         """
-        Checks connection to the LLM.
+        Checks the connection to the LLM.
         """
         print("=== Checking connection to the evaluator LLM started ===")
 
@@ -57,7 +58,7 @@ class Evaluator:
 
     def _run(self, data):
         """
-        Runs evaluation process.
+        Runs an evaluation process.
 
         Args:
             data (list): The scan results data.
