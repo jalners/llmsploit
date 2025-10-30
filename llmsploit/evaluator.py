@@ -20,16 +20,6 @@ class Evaluator:
         self._config = config
         self._judge_path = str(Path(__file__).parent / "data/judgement/judge.yaml")
 
-    def check_connection(self):
-        """
-        Checks the connection to the LLM.
-        """
-        print("=== Checking connection to the evaluator LLM started ===")
-
-        self._request_manager.check_connection(self._config)
-
-        print(">> Connection to the evaluator LLM checked\n")
-
     def evaluate(self, data):
         """
         Evaluates LLM vulnerabilities.

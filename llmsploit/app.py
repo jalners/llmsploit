@@ -1,5 +1,6 @@
 from llmsploit.config_manager import ConfigManager
 from llmsploit.request_manager import RequestManager
+from llmsploit.connection_checker import ConnectionChecker
 from llmsploit.scanner import Scanner
 from llmsploit.evaluator import Evaluator
 from llmsploit.imeca_analyzer import IMECAAnalyzer
@@ -24,6 +25,7 @@ class App:
 
         self._request_manager = RequestManager()
 
+        self._connection_checker = ConnectionChecker(self._request_manager, self._config)
         self._scanner = Scanner(self._request_manager, self._config["target"])
         self._evaluator = Evaluator(self._request_manager, self._config["evaluation"])
         self._analyzer = IMECAAnalyzer()
@@ -38,7 +40,7 @@ class App:
         """
         start_time = time.perf_counter()
 
-        self.check_connection()
+        self._connection_checker.check()
         scan_result = self._scanner.scan()
         self._evaluator.evaluate(scan_result)
         analisis_result = self._analyzer.analyze(scan_result)
@@ -48,10 +50,3 @@ class App:
         report = self._report_generator.generate(analisis_result, end_time - start_time)
 
         return report
-
-    def check_connection(self):
-        """
-        Checks the possibility of connecting to LLMs.
-        """
-        self._scanner.check_connection()
-        self._evaluator.check_connection()

@@ -28,34 +28,6 @@ class RequestManager:
         except requests.exceptions.RequestException as e:
             raise Exception(f"An error occurred during the request to the '{model}' LLM: {e}")
 
-    def check_connection(self, config):
-        """
-        Checks the connection to the LLM.
-
-        Args:
-            config (dict): The LLM configuration.
-
-        Raises:
-            Exception: If connection to the LLM failed.
-            Exception: If an error occurred during the request to the LLM.
-        """
-        url = config["url"]
-        headers = self._prepare_headers(config["api_key"])
-        model = config["model_name"]
-        payload = self._prepare_payload(model, "What is the capital of France? Answer in English.")
-
-        try:
-            response = requests.post(url, headers=headers, json=payload)
-            response.raise_for_status()
-
-            content = self._get_response_content(response.json())
-
-            if ('paris' not in content.lower()):
-                raise Exception(f"Connection to the '{model}' LLM failed.")
-            print(f"Successful connection to the '{model}' LLM")
-        except requests.exceptions.RequestException as e:
-            raise Exception(f"An error occurred during the request to the '{model}' LLM: {e}")
-
     def _prepare_headers(self, api_key):
         """
         Prepares headers before sending it to the LLM.
