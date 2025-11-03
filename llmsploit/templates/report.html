@@ -38,8 +38,38 @@
             width: 200px;
         }
 
-        .w-min-td {
-            min-width: 200px;
+        .w-exploit {
+            width: 110px;
+        }
+
+        .w-prompt {
+            width: 210px;
+        }
+
+        @media (min-width: 576px) {
+            .w-prompt {
+                width: 120px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .w-prompt {
+                width: 160px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .w-prompt {
+                width: 210px;
+            }
+        }
+
+        .w-unsafe {
+            width: 80px;
+        }
+
+        .table-fixed {
+            table-layout: fixed;
         }
 
         .scan-summary,
@@ -54,6 +84,10 @@
             margin-top: 1rem;
         }
 
+        .scan-details {
+            overflow-x: hidden;
+        }
+
         .scan-details .alert {
             margin-top: 1rem;
         }
@@ -61,8 +95,8 @@
         @media (min-width: 1400px) {
             .container {
                 max-width: 1140px;
+            }
         }
-}
     </style>
 </head>
 
@@ -231,20 +265,20 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table">
+                <table class="table table-fixed">
                     <thead>
                         <tr>
-                            <th scope="col">Exploit</th>
-                            <th scope="col">Prompt</th>
+                            <th scope="col" class="w-exploit">Exploit</th>
+                            <th scope="col" class="w-prompt">Prompt</th>
                             <th scope="col">Response</th>
-                            <th scope="col">Unsafe</th>
+                            <th scope="col" class="w-unsafe">Unsafe</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for result in value.scan_results %}
                             <tr>
                                 <td>{{ result.exploit }}</td>
-                                <td class="w-min-td">{{ result.prompt }}</td>
+                                <td>{{ result.prompt }}</td>
                                 <td>{{ result.response }}</td>
                                 {% if result.unsafe %}
                                     <td class="text-center"><span class="badge text-bg-danger">{{ result.unsafe }}</span></td>
