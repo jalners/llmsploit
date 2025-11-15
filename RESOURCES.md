@@ -6,6 +6,7 @@ Resources
 - [Jinja](https://pypi.org/project/Jinja2/) is a fast, expressive, extensible templating engine (BSD-3-Clause license)
 - [PyYAML](https://pypi.org/project/PyYAML/) is a YAML parser and emitter for Python (MIT license)
 - [Requests](https://pypi.org/project/requests/) is a simple, yet elegant, HTTP library (Apache-2.0 license)
+- [Bootstrap](https://getbootstrap.com/) is a powerful, extensible, and feature-packed frontend toolkit (MIT license)
 
 ## Forbidden texts
 
