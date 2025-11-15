@@ -9,6 +9,7 @@ LLMsploit a vulnerability scanner for Large Language Models
 * [Installation](#installation)
 * [Using LLM models](#using-llm-models)
 * [Getting started](#getting-started)
+* [Resources](#resources)
 * [License](#license)
 
 ## Installation
@@ -104,6 +105,10 @@ uv run -m llmsploit --target_url http://localhost:12434/engines/v1/chat/completi
 - **evaluation_url** - URL address of the evaluation LLM
 - **evaluation_model_name** - Evaluation LLM name
 - **evaluation_model_type** - Evaluation LLM type (for external models only; possible values - `openai`, `anthropic`, `google`, `xai`, etc.)
+
+## Resources
+
+See the RESOURCES.md file for more details about the list of used resources.
 
 ## License
 
