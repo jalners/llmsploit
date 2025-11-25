@@ -19,8 +19,8 @@ class ConnectionChecker:
         """
         Checks the possibility of connecting to LLMs.
         """
-        self._run(self._config["target"], "scanner")
-        self._run(self._config["evaluation"], "evaluator")
+        self._run(self._config["target"], "target")
+        self._run(self._config["evaluation"], "evaluation")
 
     def _run(self, config, type):
         """
