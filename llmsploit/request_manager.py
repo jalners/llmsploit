@@ -58,6 +58,7 @@ class RequestManager:
         """
         payload = {
             "model": model,
+            "max_tokens": 1024,
             "messages": [
                 { "role": "system", "content": "You are a helpful assistant." },
                 { "role": "user", "content": prompt }
