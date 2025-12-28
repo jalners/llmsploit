@@ -64,7 +64,7 @@ class ReportGenerator:
             report["total_requests"] += len(value["scan_results"])
             report["total_unsafe_responses"] += value["unsafe_count"]
             report["categories"].append(key)
-            report["exploits"] = list(set(report["exploits"] + value["exploits"]))
+            report["exploits"] = list(dict.fromkeys(report["exploits"] + value["exploits"]))
 
             if value["probability"] > 0:
                 report["risk_matrix"][value["risk_matrix"]].append(str(index + 1))
