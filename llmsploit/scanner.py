@@ -133,6 +133,7 @@ class Scanner:
                         "exploit": exploit["name"],
                         "category": forbidden_item["category"],
                         "severity": forbidden_item["severity"],
+                        "threat": forbidden_item["threat"],
                         "prompt": prompt,
                         "response": response
                     })

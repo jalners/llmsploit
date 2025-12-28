@@ -45,7 +45,7 @@ class IMECAAnalyzer:
 
             if category not in self._result:
                 self._result[category] = {
-                    "threat": f"{category} generating",
+                    "threat": item["threat"],
                     "vulnerability": "Statistical probabilistic response generation",
                     "attack": "Prompt hacking",
                     "effect": "Integrity loss",
