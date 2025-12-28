@@ -20,8 +20,8 @@ class App:
         Args:
             path_or_config (str | dict): The path to the application configuration file or configuration dictionary.
         """
-        self.config_manager = ConfigManager()
-        self._config = self.config_manager.create(path_or_config)
+        self._config_manager = ConfigManager()
+        self._config = self._config_manager.create(path_or_config)
 
         self._request_manager = RequestManager()
 
