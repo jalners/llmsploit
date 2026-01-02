@@ -1,0 +1,6 @@
+name: BPE-dropout
+description: The BPE-dropout method splits the text into more tokens than in the standard split
+source: https://arxiv.org/abs/2401.06561
+probability_decrease: 0.38
+execution_time: 14.9
+computational_cost: 4

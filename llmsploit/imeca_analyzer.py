@@ -1,3 +1,7 @@
+from pathlib import Path
+import glob
+import yaml
+
 class IMECAAnalyzer:
     """
     Analyzes LLM scanning results using the IMECA methodology.
@@ -10,38 +14,8 @@ class IMECAAnalyzer:
         """
         Initializes a new instance of IMECAAnalyzer.
         """
-        self._countermeasures = [
-            {
-                "name": "Input Check",
-                "probability_decrease": 0.47,
-                "execution_time": 10.7,
-                "computational_cost": 10
-            },
-            {
-                "name": "ICD",
-                "probability_decrease": 0.35,
-                "execution_time": 13.1,
-                "computational_cost": 5
-            },
-            {
-                "name": "Self-Reminder",
-                "probability_decrease": 0.39,
-                "execution_time": 16.4,
-                "computational_cost": 5
-            },
-            {
-                "name": "Self Defense",
-                "probability_decrease": 0.53,
-                "execution_time": 30.2,
-                "computational_cost": 10
-            },
-            {
-                "name": "BPE-dropout",
-                "probability_decrease": 0.38,
-                "execution_time": 14.9,
-                "computational_cost": 4
-            }
-        ]
+        self._countermeasures_glob = str(Path(__file__).parent / "data/countermeasures/*.y*ml")
+        self._countermeasures = []
         self._result = {
             "imeca": {},
             "risk_matrix_before_countermeasures": { "ll": [], "lm": [], "lh": [], "ml": [], "mm": [], "mh": [], "hl": [], "hm": [], "hh": [] },
@@ -64,6 +38,7 @@ class IMECAAnalyzer:
         """
         print("=== IMECA analisis started ===")
 
+        self._load_countermeasures()
         self._parse(data)
         self._calculate_criticality_components()
         self._build_risk_matrix_before_countermeasures()
@@ -74,6 +49,28 @@ class IMECAAnalyzer:
         print(">> All scan data analyzed\n")
 
         return self._result
+
+    def _load_countermeasures(self):
+        """
+        Loads countermeasures.
+
+        Raises:
+            Exception: If a file is not found.
+            Exception: If a YAML file parsing error occurs.
+        """
+        files = glob.glob(self._countermeasures_glob)
+
+        for file_path in files:
+            try:
+                with open(file_path, "r") as file:
+                    countermeasure = yaml.safe_load(file)
+            except FileNotFoundError:
+                raise Exception(f"File is not found: {file_path}")
+            except yaml.YAMLError as e:
+                raise Exception(f"Error loading YAML from {file_path}: {e}")
+
+            if countermeasure is not None:
+                self._countermeasures.append(countermeasure)
 
     def _parse(self, data):
         """

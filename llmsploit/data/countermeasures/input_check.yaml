@@ -1,0 +1,6 @@
+name: Input Check
+description: The Input Check method is based on prior verification of user request by a basic model using a special judge request
+source: https://arxiv.org/abs/2401.06561
+probability_decrease: 0.47
+execution_time: 10.7
+computational_cost: 10

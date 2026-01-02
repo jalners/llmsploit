@@ -1,0 +1,6 @@
+name: Self Defense
+description: The Self Defense method proposes checking the model's response with another instance of the model for forbidden content
+source: https://arxiv.org/abs/2401.06561
+probability_decrease: 0.53
+execution_time: 30.2
+computational_cost: 10

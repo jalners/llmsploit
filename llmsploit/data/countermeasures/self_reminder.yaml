@@ -1,0 +1,6 @@
+name: Self-Reminder
+description: The Self-Reminder technique is based on encapsulating the user's request in a system prompt that reminds the model to respond responsibly
+source: https://arxiv.org/abs/2401.06561
+probability_decrease: 0.39
+execution_time: 16.4
+computational_cost: 5
