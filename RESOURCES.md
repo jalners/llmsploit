@@ -21,3 +21,8 @@ Resources
 
 - [Do anything now](https://github.com/verazuo/jailbreak_llms/tree/main/data/prompts) - Shen et al 2023 https://arxiv.org/abs/2308.03825 (MIT license)
 - [StrongReject](https://github.com/dsbowen/strong_reject/blob/main/strong_reject/jailbreak_files/wrapping_jailbreaks.json) - Souly et al 2024 https://arxiv.org/abs/2402.10260 (MIT license)
+
+## Countermeasures
+
+- [AlignTree: Efficient Defense Against LLM Jailbreak Attacks](https://arxiv.org/abs/2511.12217) - Goren et al 2025
+- [Intention Analysis Makes LLMs A Good Jailbreak Defender](https://arxiv.org/abs/2401.06561) - Zhang et al 2024
