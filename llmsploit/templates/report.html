@@ -75,12 +75,12 @@
         .scan-summary,
         .scan-settings,
         .imeca-analysis,
-        .criticality-matrix {
+        .risk-matrix {
             margin-bottom: 2rem;
         }
 
         .imeca-analysis table,
-        .criticality-matrix table {
+        .risk-matrix table {
             margin-top: 1rem;
         }
 
@@ -171,7 +171,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for key, value in report.analysis.items() %}
+                    {% for key, value in report.analysis.imeca.items() %}
                         <tr>
                             <td class="text-center">{{ loop.index }}</td>
                             <td>{{ value.threat }}</td>
@@ -208,7 +208,7 @@
             </table>
         </div>
 
-        <div class="criticality-matrix">
+        <div class="risk-matrix">
             <h2 class="rounded">Cyber risk criticality matrix before applying countermeasures</h2>
             <table class="table table-bordered">
                 <tbody>
@@ -223,21 +223,125 @@
                     </tr>
                     <tr>
                         <td>Low (0.00 - 0.39)</td>
-                        <td class="bg-success text-white">{{ ", ".join(report.risk_matrix.ll) }}</td>
-                        <td class="bg-success text-white">{{ ", ".join(report.risk_matrix.lm) }}</td>
-                        <td class="bg-warning">{{ ", ".join(report.risk_matrix.lh) }}</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.ll) }}</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.lm) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.lh) }}</td>
                     </tr>
                     <tr>
                         <td>Medium (0.40 - 0.69)</td>
-                        <td class="bg-success text-white">{{ ", ".join(report.risk_matrix.ml) }}</td>
-                        <td class="bg-warning">{{ ", ".join(report.risk_matrix.mm) }}</td>
-                        <td class="bg-danger text-white">{{ ", ".join(report.risk_matrix.mh) }}</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.ml) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.mm) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.mh) }}</td>
                     </tr>
                     <tr>
                         <td>High (0.7 - 1.0)</td>
-                        <td class="bg-warning">{{ ", ".join(report.risk_matrix.hl) }}</td>
-                        <td class="bg-danger text-white">{{ ", ".join(report.risk_matrix.hm) }}</td>
-                        <td class="bg-danger text-white">{{ ", ".join(report.risk_matrix.hh) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.hl) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.hm) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_before_countermeasures.hh) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="rating-matrix">
+            <h2 class="rounded">Countermeasures rating matrix</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Countermeasure</th>
+                        <th scope="col" class="text-center">Productivity</th>
+                        <th scope="col" class="text-center">Efficiency</th>
+                        <th scope="col" class="text-center">Cost</th>
+                        <th scope="col" class="text-center">Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in report.analysis.countermeasures_rating_matrix.items() %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            {% if key == report.analysis.most_productive %}
+                                <td class="text-center bg-secondary text-bg-secondary">{{ value.productivity }}</td>
+                            {% else %}
+                                <td class="text-center">{{ value.productivity }}</td>
+                            {% endif %}
+                            <td class="text-center">{{ value.efficiency }}</td>
+                            <td class="text-center">{{ value.cost }}</td>
+                            {% if key == report.analysis.highest_rated %}
+                                <td class="text-center bg-secondary text-bg-secondary">{{ value.rating }}</td>
+                            {% else %}
+                                <td class="text-center">{{ value.rating }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="risk-matrix">
+            <h2 class="rounded">Cyber risk criticality matrix of most productive countermeasure ({{ report.analysis.most_productive }})</h2>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td rowspan="2" class="fw-bold align-middle">Probability</td>
+                        <td colspan="3" class="fw-bold">Severity</td>
+                    </tr>
+                    <tr>
+                        <td>Low (0.0 - 3.9)</td>
+                        <td>Medium (4.0 - 6.9)</td>
+                        <td>High (7.0 - 10.0)</td>
+                    </tr>
+                    <tr>
+                        <td>Low (0.00 - 0.39)</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_most_productive.ll) }}</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_most_productive.lm) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_most_productive.lh) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Medium (0.40 - 0.69)</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_most_productive.ml) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_most_productive.mm) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_most_productive.mh) }}</td>
+                    </tr>
+                    <tr>
+                        <td>High (0.7 - 1.0)</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_most_productive.hl) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_most_productive.hm) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_most_productive.hh) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="risk-matrix">
+            <h2 class="rounded">Cyber risk criticality matrix of highest-rated countermeasure ({{ report.analysis.highest_rated }})</h2>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td rowspan="2" class="fw-bold align-middle">Probability</td>
+                        <td colspan="3" class="fw-bold">Severity</td>
+                    </tr>
+                    <tr>
+                        <td>Low (0.0 - 3.9)</td>
+                        <td>Medium (4.0 - 6.9)</td>
+                        <td>High (7.0 - 10.0)</td>
+                    </tr>
+                    <tr>
+                        <td>Low (0.00 - 0.39)</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_highest_rated.ll) }}</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_highest_rated.lm) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_highest_rated.lh) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Medium (0.40 - 0.69)</td>
+                        <td class="bg-success text-white">{{ ", ".join(report.analysis.risk_matrix_highest_rated.ml) }}</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_highest_rated.mm) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_highest_rated.mh) }}</td>
+                    </tr>
+                    <tr>
+                        <td>High (0.7 - 1.0)</td>
+                        <td class="bg-warning">{{ ", ".join(report.analysis.risk_matrix_highest_rated.hl) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_highest_rated.hm) }}</td>
+                        <td class="bg-danger text-white">{{ ", ".join(report.analysis.risk_matrix_highest_rated.hh) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -248,7 +352,7 @@
             <div class="alert alert-danger" role="alert">
                 Please note that this section contains examples of harmful, unethical, illegal, offensive, or biased language. We apologize for any discomfort that may arise while reading such content.
             </div>
-            {% for key, value in report.analysis.items() %}
+            {% for key, value in report.analysis.imeca.items() %}
                 <table class="table table-borderless">
                     <tbody>
                         <tr>

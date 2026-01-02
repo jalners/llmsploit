@@ -56,18 +56,14 @@ class ReportGenerator:
             "total_unsafe_responses": 0,
             "categories": [],
             "exploits": [],
-            "risk_matrix": { "ll": [], "lm": [], "lh": [], "ml": [], "mm": [], "mh": [], "hl": [], "hm": [], "hh": [] },
             "analysis": data
         }
 
-        for index, (key, value) in enumerate(data.items()):
+        for key, value in data["imeca"].items():
             report["total_requests"] += len(value["scan_results"])
             report["total_unsafe_responses"] += value["unsafe_count"]
             report["categories"].append(key)
             report["exploits"] = list(dict.fromkeys(report["exploits"] + value["exploits"]))
-
-            if value["probability"] > 0:
-                report["risk_matrix"][value["risk_matrix"]].append(str(index + 1))
 
         return report
 
