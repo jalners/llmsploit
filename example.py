@@ -14,8 +14,5 @@ app = App(config)
 # Create an application for future use (with path to the configuration file).
 # app = App("example_config.yaml")
 
-# Verifying connection to the LLM.
-app.check_connection()
-
 # For the complete vulnerability scanning process, call the following method:
-# app.process()
+app.process()
