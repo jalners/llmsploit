@@ -1,6 +1,0 @@
-name: ICD
-description: The ICD method increases model robustness by demonstratively adding context with rejected examples of texts containing forbidden content
-source: https://arxiv.org/abs/2401.06561
-probability_decrease: 0.35
-execution_time: 13.1
-computational_cost: 5
