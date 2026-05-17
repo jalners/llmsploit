@@ -113,7 +113,9 @@ See the RESOURCES.md file for more details about the list of used resources.
 
 ## Context
 
-The scanner was developed while researching for a dissertation on competition for scientific degree of Doctor of Philosophy by specialty 125 Cybersecurity. – National Aerospace University "Kharkiv Aviation Institute", Kharkiv, 2026. The theme "Methods and means of cybersecurity analysis and protection of Large Language Models from generating forbidden content on local and cloud servers".
+The scanner was developed while researching for a dissertation on competition for scientific degree of Doctor of Philosophy by specialty 125 Cybersecurity. – National Aerospace University "Kharkiv Aviation Institute", Kharkiv, 2026.
+
+The theme of the dissertation is: "Methods and means of cybersecurity analysis and protection of Large Language Models from generating forbidden content on local and cloud servers".
 
 Publications on the research topic:
 - [Ensurance of artificial intelligence systems cyber security: analysis of vulnerabilities, attacks and countermeasures](https://science.lpnu.ua/sisn/all-volumes-and-issues/volume-12-2022/ensurance-artificial-intelligence-systems-cyber-security)
