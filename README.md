@@ -9,6 +9,7 @@ LLMsploit a vulnerability scanner for Large Language Models
 * [Installation](#installation)
 * [Using LLM models](#using-llm-models)
 * [Getting started](#getting-started)
+* [Example of work](#example-of-work)
 * [Resources](#resources)
 * [Context](#context)
 * [License](#license)
@@ -106,6 +107,31 @@ uv run -m llmsploit --target_url http://localhost:12434/engines/v1/chat/completi
 - **evaluation_url** - URL address of the evaluation LLM
 - **evaluation_model_name** - Evaluation LLM name
 - **evaluation_model_type** - Evaluation LLM type (for external models only; possible values - `openai`, `anthropic`, `google`, `xai`, etc.)
+
+## Example of work
+
+As a test example, we simulate an attack on the local Google's Gemma 3 model (4B parameters, Q4_K_M quantization). The evaluation is performed by OpenAI's local gpt-oss model (20B parameters, Q4_K_M quantization). The simulation is performed on a MacBook Pro laptop with an Apple M1 Max processor and 32 GB of memory. The models are run using Docker Model Runner feature.
+
+Scan report summary:
+![Scan report summary](assets/scan_report_summary.jpg)
+
+Scan settings:
+![Scan settings](assets/scan_settings.jpg)
+
+IMECA cybersecurity analysis:
+![IMECA cybersecurity analysis](assets/imeca_analysis.jpg)
+
+Cyber risk criticality matrix before applying countermeasures:
+![Cyber risk criticality matrix before applying countermeasures](assets/risk_matrix_before.jpg)
+
+Countermeasures rating matrix:
+![Countermeasures rating matrix](assets/rating_matrix.jpg)
+
+Cyber risk criticality matrix of most productive countermeasure (Self Defense):
+![Cyber risk criticality matrix of most productive countermeasure (Self Defense)](assets/self_defense_matrix.jpg)
+
+Cyber risk criticality matrix of highest-rated countermeasure (Input Check):
+![Cyber risk criticality matrix of highest-rated countermeasure (Input Check)](assets/input_check_matrix.jpg)
 
 ## Resources
 
