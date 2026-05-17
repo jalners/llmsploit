@@ -10,6 +10,7 @@ LLMsploit a vulnerability scanner for Large Language Models
 * [Using LLM models](#using-llm-models)
 * [Getting started](#getting-started)
 * [Resources](#resources)
+* [Context](#context)
 * [License](#license)
 
 ## Installation
@@ -109,6 +110,21 @@ uv run -m llmsploit --target_url http://localhost:12434/engines/v1/chat/completi
 ## Resources
 
 See the RESOURCES.md file for more details about the list of used resources.
+
+## Context
+
+The scanner was developed while researching for a dissertation on the theme "Methods and means of cybersecurity analysis and protection of
+Large Language Models from generating forbidden content on local and cloud servers".
+
+Publications on the research topic:
+- [Ensurance of artificial intelligence systems cyber security: analysis of vulnerabilities, attacks and countermeasures](https://science.lpnu.ua/sisn/all-volumes-and-issues/volume-12-2022/ensurance-artificial-intelligence-systems-cyber-security)
+- [Model for Describing Processes of AI Systems Vulnerabilities Collection and Analysis using Big Data Tools](https://ieeexplore.ieee.org/document/10018811/)
+- [Multi-source Analysis of AI Vulnerabilities: Methodology and Algorithms of Data Collection](https://ieeexplore.ieee.org/document/10348671)
+- [Large Language Models Vulnerabilities Criticality: ІМЕСА-based Analysis of Attacks and Countermeasures](https://link.springer.com/chapter/10.1007/978-3-032-05802-7_34)
+- [A model of ensuring LLM cybersecurity](https://nti.khai.edu/ojs/index.php/reks/article/view/reks.2025.2.13/2763)
+- [Method for criticality analysis of vulnerabilities in Large Language Models](https://vottp.khmnu.edu.ua/index.php/vottp/article/view/786/769)
+- [IMECA method of risk-based assessment and ensuring cybersecurity of Large Language Models](https://hait.od.ua/index.php/journal/article/view/238/204)
+- [Information Technology for Assessing and Ensuring Cybersecurity of Large Language Models](https://journals.chnu.edu.ua/sisiot/article/view/1093/1094)
 
 ## License
 
