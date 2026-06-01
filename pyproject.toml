@@ -1,6 +1,6 @@
 [project]
 name = "llmsploit"
-version = "0.1.0"
+version = "0.2.0"
 description = "LLMsploit a vulnerability scanner for Large Language Models"
 authors = [
     { name = "Oleksii Neretin", email = "oleksii.neretin@gmail.com" },
