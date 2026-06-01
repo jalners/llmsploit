@@ -19,6 +19,7 @@ class ConfigManager:
             "target_model_type": { "field": "target", "name": "model_type"},
             "target_api_key": { "field": "target", "name": "api_key", "default": "" },
             "categories": { "field": "target", "name": "categories" },
+            "language": { "field": "target", "name": "language", "default": "en" },
             "exploits": { "field": "target", "name": "exploits" },
             "evaluation_url": { "field": "evaluation", "name": "url" },
             "evaluation_model_name": { "field": "evaluation", "name": "model_name" },

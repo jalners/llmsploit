@@ -20,8 +20,7 @@ class Scanner:
         """
         self._request_manager = request_manager
         self._config = config
-        self._forbidden_texts_glob = str(Path(__file__).parent / "data/forbidden_texts/*.y*ml")
-        self._exploits_glob = str(Path(__file__).parent / "data/exploits/*.y*ml")
+        self._configure_data_paths()
         self._forbidden_texts = []
         self._exploits = [{
             "name": "Default",
@@ -29,6 +28,18 @@ class Scanner:
             "template": "{{prompt}}"
         }]
         self._result = []
+
+    def _configure_data_paths(self):
+        language = self._config.get("language", "en")
+        data_root = Path(__file__).parent / "data"
+
+        if language == "en":
+            language_root = data_root
+        else:
+            language_root = data_root / language
+
+        self._forbidden_texts_glob = str(language_root / "forbidden_texts/*.y*ml")
+        self._exploits_glob = str(language_root / "exploits/*.y*ml")
 
     def scan(self):
         """
