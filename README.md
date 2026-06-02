@@ -103,6 +103,7 @@ uv run -m llmsploit --target_url http://localhost:12434/engines/v1/chat/completi
 - **target_model_name** - Investigated LLM name
 - **target_model_type** - Investigated LLM type (for external models only; possible values - `openai`, `anthropic`, `google`, `xai`, etc.)
 - **categories** - Default forbidden categories for use (possible values - `"Harmful Content"`, `"Cybercrime Activities"`, `"Physical Harm"`, `"Economic Harm"`, `"Illegal Drugs"`, `"Weapons Activities"`, `"Terrorist Content"`, `"Intellectual Property Infringement"`, `"Fraud"`, `"Disinformation"`, `"Adult Content"`, `"Political Activities"`, `"Privacy Violations"`, `"Unauthorized Practices"`, `"Government Decisions"`)
+- **language** - Prompt dataset language (default value - `en`, possible values - `uk`)
 - **exploits** - Exploit disabling flag (possible values - `False` for using in Python, empty value for CLI)
 - **evaluation_url** - URL address of the evaluation LLM
 - **evaluation_model_name** - Evaluation LLM name
